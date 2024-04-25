@@ -50,56 +50,29 @@ main <- function() {
     )
   }
 
-  Plot2DrugHeatmap(
+  plot <- Plot2DrugHeatmap(
     data = res3,
     plot_block = 1,
     drugs = c(1, 2),
-    plot_value = "response",
+    plot_value = "Bliss_synergy",
     dynamic = FALSE,
-    summary_statistic = c("mean", "median")
-  )
-  Plot2DrugHeatmap(
-    data = res3,
-    plot_block = 1,
-    drugs = c(1, 2),
-    plot_value = "ZIP_synergy",
-    dynamic = FALSE,
-    summary_statistic = c("quantile_25", "quantile_75")
+    text_label_size_scale = 1.5,
+    summary_statistic = c("quantile_25", "quantile_75", "mean")
   )
 
-  Plot2DrugContour(
-    data = res3,
-    plot_block = 1,
-    drugs = c(1, 2),
-    plot_value = "response",
-    dynamic = FALSE,
-    summary_statistic = c("mean", "median")
-  )
-  Plot2DrugContour(
-    data = res3,
-    plot_block = 1,
-    drugs = c(1, 2),
-    plot_value = "ZIP_synergy",
-    dynamic = FALSE,
-    summary_statistic = c("quantile_25", "quantile_75")
+  my_theme <- theme(
+    axis.line = element_line(color = "black", size = 0.75),
+    panel.grid.major = element_line(color = "black", size = 0.75),
+    panel.background = element_rect(fill = "white"),
+
+    plot.title = element_text(face = "bold", size = 14),
+    axis.title = element_text(size = 12),
+    axis.text = element_text(size = 10),
+    legend.title = element_text(size = 10),
+    legend.text = element_text(size = 10)
   )
 
-  Plot2DrugSurface(
-    data = res3,
-    plot_block = 1,
-    drugs = c(1, 2),
-    plot_value = "response",
-    dynamic = FALSE,
-    summary_statistic = c("mean", "quantile_25", "median", "quantile_75")
-  )
-  Plot2DrugSurface(
-    data = res3,
-    plot_block = 1,
-    drugs = c(1, 2),
-    plot_value = "ZIP_synergy",
-    dynamic = FALSE,
-    summary_statistic = c("mean", "quantile_25", "median", "quantile_75")
-  )
+  plot + my_theme
 }
 
 
